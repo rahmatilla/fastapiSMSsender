@@ -5,7 +5,7 @@ from fastapi import HTTPException, status
 
 
 def create(request: Receiver, db: Session):
-    new_receiver = models.Receiver(category=request.category, number_list=request.number_list, user_id=1)
+    new_receiver = models.Receiver(sms_category=request.sms_category, number_list=request.number_list, user_id=1)
     db.add(new_receiver)
     db.commit()
     db.refresh(new_receiver)
@@ -37,6 +37,6 @@ def update(id: int, request: Receiver, db: Session):
     receiver = db.query(models.Receiver).filter(models.Receiver.id == id)
     if not receiver.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Receiver with the id {id} is not found")
-    receiver.update({"category": request.category, "number_list": request.number_list}, synchronize_session=False)
+    receiver.update({"sms_category": request.sms_category, "number_list": request.number_list}, synchronize_session=False)
     db.commit()
     return {"detail": f"Receiver with id {id} has been updated"}
