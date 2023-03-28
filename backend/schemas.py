@@ -38,9 +38,9 @@ class SMSlog(BaseModel):
 
 
 class SendSMS(BaseModel):
-    sms_category = str
-    text = str
-    source_addr = str
+    sms_category: str
+    text: str
+    source_addr: str
 
 class Login(BaseModel):
     username: str

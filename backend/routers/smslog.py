@@ -14,6 +14,8 @@ router = APIRouter(
 async def sendsms(request: SendSMS, db: Session = Depends(get_db)): #, current_user: User = Depends(get_current_user)
     return smslog.sendsms(request, db)
 
+
+
 @router.get('/')
 async def get_smslog(db: Session = Depends(get_db)): #, current_user: User = Depends(get_current_user)
     return smslog.get_smslog(db)
